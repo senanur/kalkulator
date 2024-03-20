@@ -107,6 +107,7 @@ public class KalkulatorForm extends javax.swing.JFrame {
         if (angka1 != null && angka2 != null) {
             hasil = App.hitung(angka1, angka2, operator);
             JOptionPane.showMessageDialog(null, angka1 + " " + operator + " " + angka2 + " = " + hasil);
+            App.insertHitung(angka1, angka2, operator, hasil);
         }
         
         txtAngka1.setText("");
