@@ -93,15 +93,22 @@ public class KalkulatorForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
-        Double angka1, angka2, hasil = null;
+        Double angka1 = null, angka2 = null, hasil = null;
         String operator;
+        try {
+            angka1 = Double.valueOf(txtAngka1.getText());
+            angka2 = Double.valueOf(txtAngka2.getText());
+        } catch (NumberFormatException ne) {
+            JOptionPane.showMessageDialog(null, "Input bukan angka!");
+        }
         
-        angka1 = Double.valueOf(txtAngka1.getText());
-        angka2 = Double.valueOf(txtAngka2.getText());
         operator = (String) cbOperator.getSelectedItem();
-        hasil = App.hitung(angka1, angka2, operator);
-                       
-        JOptionPane.showMessageDialog(null, angka1 + " " + operator + " " + angka2 + " = " + hasil);
+        
+        if (angka1 != null && angka2 != null) {
+            hasil = App.hitung(angka1, angka2, operator);
+            JOptionPane.showMessageDialog(null, angka1 + " " + operator + " " + angka2 + " = " + hasil);
+        }
+        
         txtAngka1.setText("");
         txtAngka2.setText("");
         cbOperator.setSelectedIndex(0);
